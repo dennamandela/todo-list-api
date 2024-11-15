@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.netfusionid.todo_list_api.dto.JwtAuthResponse;
 import com.netfusionid.todo_list_api.dto.LoginDto;
+import com.netfusionid.todo_list_api.dto.SignUpDto;
 import com.netfusionid.todo_list_api.service.AuthService;
 
 import lombok.AllArgsConstructor;
@@ -29,5 +30,10 @@ public class AuthController {
         jwtAuthResponse.setAccessToken(token);
 
         return new ResponseEntity<>(jwtAuthResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> signUp(@RequestBody SignUpDto signUpDto){
+        return authService.signUp(signUpDto);
     }
 }
